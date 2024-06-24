@@ -57,7 +57,7 @@ class CustomerController extends Controller
     public function index()
     {
         //get all
-        $customer = Customer::paginate(5);
+        $customer = Customer::paginate(10);
 
         $data = $customer->items();
 
