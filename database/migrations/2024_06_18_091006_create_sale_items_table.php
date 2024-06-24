@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sale_items', function (Blueprint $table) {
-            $table->string('sale_code',200)->nullable();
-            $table->string('item_code',200)->nullable();
+        Schema::create('item_penjualan', function (Blueprint $table) {
+            $table->string('nota',200)->nullable();
+            $table->string('kode_barang',200)->nullable();
             $table->integer('quantity',20);
         });
 
-        Schema::table('sale_items', function (Blueprint $table){
-            $table->foreign('sale_code')->references('sale_id')->on('sales')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('item_code')->references('item_id')->on('items')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('item_penjualan', function (Blueprint $table){
+            $table->foreign('nota')->references('id_nota')->on('penjualan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('kode_barang')->references('kode')->on('barang')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sale_items');
+        Schema::dropIfExists('item_penjualan');
     }
 };

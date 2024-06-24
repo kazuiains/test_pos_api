@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
-            $table->string('sale_id',200)->primary();
-            $table->timestamp('date')->nullable();
-            $table->string('customer_code',200)->nullable();
-            $table->string('total',100);
+        Schema::create('penjualan', function (Blueprint $table) {
+            $table->string('id_nota',200)->primary();
+            $table->timestamp('tanggal')->nullable();
+            $table->string('kode_pelanggan',200)->nullable();
+            $table->string('subtotal',100);
         });
 
-        Schema::table('sales', function (Blueprint $table){
-            $table->foreign('customer_code')->references('customer_id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
+        Schema::table('penjualan', function (Blueprint $table){
+            $table->foreign('kode_pelanggan')->references('id_pelanggan')->on('pelanggan')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('penjualan');
     }
 };
